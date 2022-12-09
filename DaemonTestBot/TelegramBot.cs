@@ -44,11 +44,12 @@ namespace DaemonTestBot
         {
             _running = true;
             var interval = TimeSpan.FromMinutes(10);
-            var text = $"Прошло 10 минут. Бот все еще работает. Текущее количество тиков: {__ticks}";
+            
             while (_running && !cancellationToken.IsCancellationRequested)
             {
                 await Task.Delay(interval);
                 __ticks++;
+                var text = $"Прошло 10 минут. Бот все еще работает. Текущее количество тиков: {__ticks}";
                 await _client.SendTextMessageAsync(
                     chatId: _settings.ChatId,
                     text: text,
